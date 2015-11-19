@@ -2,6 +2,11 @@
 Very simple jquery plugin for handling automatic input data saving on change. A "value" data key will be set based the form input value.
 
 Exemple usages : 
+##HTML
+```
+<input type="text" value="42" data-id_employee="11" data_id_price="3">
+```
+##JS
 ```
 $('.updatePrice').AutoDataSync({
     // The data-attributes array will be map as key/value data for the request
@@ -14,6 +19,8 @@ $('.updatePrice').AutoDataSync({
     // Any other $.ajax() options can be used
 });
 ```
+
+##The plugin code :
 ```
 $.fn.AutoDataSync = function (options) {
 	$(this).each(function () {
