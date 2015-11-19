@@ -1,18 +1,14 @@
 # jquery-simple-autodatasync
-Very simple jquery plugin for handling automatic input data saving on change.
+Very simple jquery plugin for handling automatic input data saving on change. Based on data attributes
 
 Exemple usages : 
 
 $('.updatePrice').AutoDataSync({
+    // The data-attributes array will be map as key/value data for the request
     dataAttributes : ["id_employee","id_price"],
-    url: "/myProcessingCode.php",
-    callback : function (response) {
-        toastr.success( 
-            $(this).parents("tr").data('name')+", "+
-            $(this).data("employee-name")+" : " + 
-            $(this).val() 
-        );
-        if(response != "")
-            $(this).data('id_price',response);
+    post : "/myProcessingCode.php",
+    success : function (response) {
+        console.log("yay data saved !")
     }
+    // Any other $.ajax() options can be used
 });
