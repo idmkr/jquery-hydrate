@@ -22,7 +22,6 @@ $("input").hydrate(options)
 ## Checkbox, radio
 HTML
 ```
-// HTML
 <input type="checkbox" name="is_active" checked data-id_user="3">
 ```
 JS
