@@ -1,4 +1,4 @@
-# jquery-simple-autodatasync
+# jQuery simple input auto datasync on change
 Very simple jquery plugin for handling automatic input data saving on change. Based on data attributes
 
 Exemple usages : 
@@ -12,4 +12,28 @@ $('.updatePrice').AutoDataSync({
     }
     // Any other $.ajax() options can be used
 });
+```
+```
+$.fn.AutoDataSync = function (options) {
+	$(this).each(function () {
+		var $input = $(this);
+		var o = { data: { value: $input.val() } };
+	
+		$.each(options,function (p,v) {
+			if(p.match(/post|get/i))
+				o.method = p, o.url = v;
+			else if(p.match(/dataattributes/i))
+				$.map(v,function (d) { o.data[d]=$input.data(d) });
+			else if(p.match(/success|error/i))
+				o[p]=function (r) {typeof v == "function" && $.proxy(v,$input,r)()} 
+			else 
+				o[p] = v;
+		})
+
+		$input.bind({
+			keyup :function(e) { e.keyCode === 13 && $input.blur(); },
+			blur : function () { $.ajax(o); }
+		})
+	})
+}
 ```
