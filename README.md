@@ -8,7 +8,7 @@ Exemple usages :
 ```
 ##JS
 ```
-$('.updatePrice').AutoDataSync({
+$(input).AutoDataSync({
     // The data-attributes array will be map as key/value data for the request
     dataAttributes : ["id_employee","id_price"],
     post : "/myProcessingCode.php",
