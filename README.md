@@ -8,7 +8,8 @@ $('.updatePrice').AutoDataSync({
     dataAttributes : ["id_employee","id_price"],
     post : "/myProcessingCode.php",
     success : function (response) {
-        console.log("yay data saved !")
+        console.log("yay data saved !");
+        $(this).css({border:"1px solid green"});
     }
     // Any other $.ajax() options can be used
 });
