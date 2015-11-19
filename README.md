@@ -1,14 +1,15 @@
-# jQuery very simple input auto datasync on change
-Very simple jquery plugin for handling automatic input data hydrating on value change.
+# Simple jQuery input hydrating/datasyncing on value change
+This handy little plugin can do a lot a things on its own. It may be what you need if you just want to automatically save specific types of isolated data without reloading the page, based only on the targeted element attributes.
 
 #Features
 - Sends data on Enter keypress and focusout
 - Quick data binding through html data-*
   -  If no dataAttributes option is set, all data-* associated with the input/textarea/select will be used
   -  Input value key will either be the name attribute or "value" by default
--  Every form input type handled
-- Method and url in one declaration
+- Every form input type handled
+- Method and URL in one declaration
 - Form object bound to success/error callbacks 
+- Compatible with any $.ajax() options
 
 #Usage
 ```
