@@ -1,7 +1,7 @@
 # jQuery simple input auto datasync on change
 Very simple jquery plugin for handling automatic input data saving on change. A "value" data key will be set based the form input value.
 
-Exemple usages : 
+Exemple usage : 
 ##HTML
 ```
 <input type="text" value="42" data-id_employee="11" data_id_price="3">
