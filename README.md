@@ -1,5 +1,5 @@
 # Simple jQuery input hydrating/datasyncing on value change
-This handy little plugin can do a lot a things on its own. It may be what you need if you just want to automatically save specific types of isolated data without reloading the page, based only on the targeted element attributes.
+This handy little plugin can do a lot a things on its own. It may be what you need if you just want to automatically save input data element-by-element without reloading the page, based only on the targeted element attributes.
 
 #Features
 - Sends data on Enter keypress and focusout
