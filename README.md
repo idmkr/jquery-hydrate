@@ -6,7 +6,7 @@ This handy little plugin can do a lot a things on its own. It may be what you ne
 - Quick data binding through html data-*
   -  If no dataAttributes option is set, all data-* associated with the input/textarea/select will be used
   -  Input value key will either be the name attribute or "value" by default
-- Every form element compatible
+- Every form element is compatible
 - Method and URL in one declaration
 - Form object bound to success/error callbacks 
 - Compatible with any $.ajax() options
