@@ -9,7 +9,7 @@ Exemple usage :
 ##JS
 ```
 $(input).AutoDataSync({
-    // The data-attributes array will be map as key/value data for the request
+    // The data-attributes array will be mapped as key/value data for the request
     dataAttributes : ["id_employee","id_price"],
     post : "/myProcessingCode.php",
     success : function (response) {
