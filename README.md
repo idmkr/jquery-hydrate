@@ -31,7 +31,7 @@ $.fn.AutoDataSync = function (options) {
 			if(p.match(/post|get/i))
 				o.method = p, o.url = v;
 			else if(p.match(/dataattributes/i))
-				$.map(v,function (d) { o.data[d]=$input.data(d) });
+				for(var d in v) { o.data[d]=$input.data(d) }
 			else if(p.match(/success|error/i) && typeof v == "function" )
 				o[p]=$.proxy(v,$input);
 			else 
