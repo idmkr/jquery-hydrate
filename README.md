@@ -1,5 +1,5 @@
 # jQuery simple input auto datasync on change
-Very simple jquery plugin for handling automatic input data saving on change. Based on data attributes
+Very simple jquery plugin for handling automatic input data saving on change. A "value" data key will be set based the form input value.
 
 Exemple usages : 
 ```
