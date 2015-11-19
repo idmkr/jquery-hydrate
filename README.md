@@ -21,11 +21,11 @@ $("input").hydrate(options)
 
 ## Checkbox, radio
 HTML
-```
+```html
 <input type="checkbox" name="is_active" checked data-id_user="3">
 ```
 JS
-```
+```js
 $("input").hydrate("/myProcessingCode.php");
 
 // Next checkbox click will trigger $.get("/myProcessingCode.php",{"is_active":false,"id_user":3})
@@ -33,12 +33,12 @@ $("input").hydrate("/myProcessingCode.php");
 
 ##Any other input, textarea, or select
 HTML
-```
+```html
 <input class="hydrated" type="text" value="42" data-id_employee="11" data-id_price="3" data-not-sent="whatever">
 <textarea class="hydrated" name="description" data-id_book="5">Lorem ipsum</textarea>
 ```
 JS
-```
+```js
 $(".hydrated").hydrate({
     // The data-attributes array will be mapped as key/value data for the request
     dataAttributes : ["id_employee","id_price"], 
