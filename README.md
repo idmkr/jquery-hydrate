@@ -11,7 +11,9 @@ It has not been fully tested, and is only used by me for a specific usage at thi
 - Also sends parent form data-* by default ( customizable with "parent" and filterable with "parentDataFilter" options )
 - Every form element should be compatible
 - Method and URL in one declaration
-- Compatible with any $.ajax() options
+- Compatible with any $.ajax() options. 
+  - Events functions : "this" refers as the current form input that has changed
+  - dataFilter() : the function has been entirely replaced, to fully reflect the plugin intention. Here data refers to filtering the  data-* attributes that will be sent with each onchange ajax request. 
 
 #Usage
 ```js
