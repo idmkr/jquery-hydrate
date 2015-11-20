@@ -56,7 +56,7 @@ JS
 ```js
 $(".hydrated").hydrate({
     // The data-attributes array will be mapped as key/value data for the request
-    dataAttributes : ["id_employee","id_price"], 
+    dataFilter : ["id_employee","id_price"], 
     post : "/myProcessingCode.php",
     success : function (response) {
         console.log("yay data saved ! Return : "+response);
