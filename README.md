@@ -1,15 +1,16 @@
 # Simple jQuery hydrating/datasyncing plugin
-This handy little plugin can do a lot a things on its own. It may be what you need if you just want to automatically save input data element-by-element without reloading the page, based only on the targeted element attributes. The parent form data-* can also be sent along with the other parameters.
+This handy little plugin can do a lot a things on its own. It may be what you need if you just want to automatically save input data element-by-element without reloading the page, based only on the targeted element data-* attributes. The parent form data-* can also be sent along with the other parameters. Filter options and ajax options make it fully customizable.
+Unlike the famous jquery.form which can fully upgrade a html form to an ajax form, this plugin goal is to get rid of a submit button, or even a form tag. While it's called "hydrating", this plugin does not deal with models. It just sends attributes data on change !
+It has not been fully tested, and is only used by me for a specific usage at this time. Any improvement/help would be welcome.
 
 #Features
-- Sends data on Enter keypress and focusout
-- Quick data binding through html data-*
+- Sends data in background on Enter keypress and focusout
+- Quick data binding & filtering through html data-*
   -  If no dataFilter option is set, all data-* associated with the input/textarea/select will be used
   -  Input value key will either be the name attribute or "value" by default
 - Also sends parent form data-* by default ( customizable with "parent" and filterable with "parentDataFilter" options )
-- Every form element is compatible
+- Every form element should be compatible
 - Method and URL in one declaration
-- Form object bound to success/error callbacks 
 - Compatible with any $.ajax() options
 
 #Usage
@@ -31,7 +32,7 @@ $("input").hydrate({
 
 #Examples 
 
-## Checkbox, radio
+## No options
 HTML
 ```html
 <form data-week_day="monday">
@@ -45,10 +46,10 @@ $("input").hydrate("/myProcessingCode.php");
 // Next checkbox click will trigger $.get("/myProcessingCode.php",{ "is_busy":false, "id_user":3, "week_day":"monday" })
 ```
 
-##Any other input, textarea, or select
+## Multiple inputs, no form
 HTML
 ```html
-<input class="hydrated" type="text" value="42" data-id_employee="11" data-id_price="3" data-not-sent="whatever">
+<input class="hydrated" type="text" value="42" data-id_author="11" data-price="39.99" data-not-sent="whatever">
 <textarea class="hydrated" name="description" data-id_book="5">Lorem ipsum</textarea>
 ```
 JS
@@ -64,6 +65,6 @@ $(".hydrated").hydrate({
     // Any other $.ajax() options can be used
 });
 
-// Next input change will trigger $.post("/myProcessingCode.php",{value:42, id_employee:11, id_price:3})
+// Next input change will trigger $.post("/myProcessingCode.php",{value:42, id_author:11, id_price:39.99})
 // Next textarea change will trigger $.post("/myProcessingCode.php",{description:"Lorem ipsum", id_book:5})
 ```
