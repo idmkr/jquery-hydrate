@@ -1,10 +1,14 @@
 # Simple jQuery hydrating/datasyncing plugin
 This handy little plugin can do a lot a things on its own. It may be what you need if you just want to automatically save input data element-by-element without reloading the page, based only on the targeted element data-* attributes. The parent form data-* can also be sent along with the other parameters. Filter options and ajax options make it fully customizable.
-Unlike the famous jquery.form which can fully upgrade a html form to an ajax form, this plugin goal is to get rid of a submit button, or even a form tag. While it's called "hydrating", this plugin does not deal with models. It just sends attributes data on change !
+
+Unlike the famous jquery.form which can fully upgrade a html form to an ajax form, this plugin goal is to get rid of a submit button, or even a form tag. While it's called "hydrating", this plugin does not deal with models. It just sends any data on change !
+
 It has not been fully tested, and is only used by me for a specific usage at this time. Any improvement/help would be welcome.
 
 #Features
+- Compatible with jQuery > 1.9.0 and browsers having FormData API. See http://caniuse.com/#search=FormData
 - Sends data in background on Enter keypress and focusout
+- Able to send files via Ajax, with uploadProgress event ( same as jquery.form, minus cross browser abilities )
 - Quick data binding & filtering through html data-*
   -  If no dataFilter option is set, all data-* associated with the input/textarea/select will be used
   -  Input value key will either be the name attribute or "value" by default
@@ -24,11 +28,12 @@ $("input").hydrate(options)
 #Options
 ```js
 $("input").hydrate({
-  url|get|post => string,                             // Mandatory
-  dataFilter   => array|function|regexp|string,       // Any type of filter. Default : false
-  parent       => string|jQuery ,                     // The parent element selector which contains extra data-*. Default : "form"
-  parentDataFilter   => array|function|regexp|string, // Any type of filter. Default : false
-  // Any other $.ajax() may be used here
+  url|get|post      => string,                       // Mandatory
+  dataFilter        => array|function(k,v)|regexp|string, // Any type of filter. Default : false
+  parent            => string|jQuery ,               // The parent element selector which contains extra data-*. Default : "form"
+  parentDataFilter  => array|function|regexp|string, // Any type of filter. Default : false
+  uploadProgress    => function(uploadProgress(event, position, total, percent) // Default : false
+  // Any other $.ajax() options may be used here
 })
 ```
 
