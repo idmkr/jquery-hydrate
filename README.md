@@ -4,18 +4,29 @@ This handy little plugin can do a lot a things on its own. It may be what you ne
 #Features
 - Sends data on Enter keypress and focusout
 - Quick data binding through html data-*
-  -  If no dataAttributes option is set, all data-* associated with the input/textarea/select will be used
+  -  If no dataFilter option is set, all data-* associated with the input/textarea/select will be used
   -  Input value key will either be the name attribute or "value" by default
-- Also sends form data-* when "withFormData" option array is set 
+- Also sends parent form data-* by default ( customizable with "parent" and filterable with "parentDataFilter" options )
 - Every form element is compatible
 - Method and URL in one declaration
 - Form object bound to success/error callbacks 
 - Compatible with any $.ajax() options
 
 #Usage
-```
+```js
 $("input").hydrate(url [,callback])
 $("input").hydrate(options)
+```
+
+#Options
+```js
+$("input").hydrate({
+  url|get|post => string,                             // Mandatory
+  dataFilter   => array|function|regexp|string,       // Any type of filter. Default : false
+  parent       => selector|jQuery ,                   // The parent element which contains extra data-*
+  parentDataFilter   => array|function|regexp|string, // Any type of filter. Default : false
+  // Any other $.ajax() may be used here
+})
 ```
 
 #Examples 
@@ -23,13 +34,15 @@ $("input").hydrate(options)
 ## Checkbox, radio
 HTML
 ```html
-<input type="checkbox" name="is_active" checked data-id_user="3">
+<form data-week_day="monday">
+  <input type="checkbox" name="is_busy" checked data-id_user="3">
+</form>
 ```
 JS
 ```js
 $("input").hydrate("/myProcessingCode.php");
 
-// Next checkbox click will trigger $.get("/myProcessingCode.php",{"is_active":false,"id_user":3})
+// Next checkbox click will trigger $.get("/myProcessingCode.php",{ "is_busy":false, "id_user":3, "week_day":"monday" })
 ```
 
 ##Any other input, textarea, or select
