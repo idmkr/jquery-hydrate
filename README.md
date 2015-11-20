@@ -23,7 +23,7 @@ $("input").hydrate(options)
 $("input").hydrate({
   url|get|post => string,                             // Mandatory
   dataFilter   => array|function|regexp|string,       // Any type of filter. Default : false
-  parent       => selector|jQuery ,                   // The parent element which contains extra data-*
+  parent       => string|jQuery ,                     // The parent element selector which contains extra data-*. Default : "form"
   parentDataFilter   => array|function|regexp|string, // Any type of filter. Default : false
   // Any other $.ajax() may be used here
 })
