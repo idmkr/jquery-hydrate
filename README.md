@@ -7,6 +7,7 @@ It has not been fully tested, and is only used by me for a specific usage at thi
 
 #Features
 - Compatible with jQuery > 1.9.0 and browsers having FormData API. See http://caniuse.com/#search=FormData
+- Lightweight code
 - Sends data in background on Enter keypress and focusout
 - Able to send files via Ajax, with uploadProgress event ( same as jquery.form, minus cross browser abilities )
 - Quick data binding & filtering through html data-*
