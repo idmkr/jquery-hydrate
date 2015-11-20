@@ -7,7 +7,7 @@
 					( $.isArray(filter) && $.inArray(k,filter) != -1) || 
 					( $.isFunction(filter) && $.proxy(filter,$e,k)() ) || 
 					( $.type(filter) == "regexp" && filter.test(k) ) || 
-					( $.type(filter) == "string" && filter == k ) || 
+					( $.type(filter) == "string" && filter == k ) 
 				)
 					data[k] = v;
 			});
@@ -55,7 +55,6 @@
 					$.extend(o.data,$t.data());
 				}
 
-				console.log(o);return;
 				$.ajax(o);
 			}
 		})
