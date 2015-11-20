@@ -1,11 +1,12 @@
-# Simple jQuery input hydrating/datasyncing on value change
-This handy little plugin can do a lot a things on its own. It may be what you need if you just want to automatically save input data element-by-element without reloading the page, based only on the targeted element attributes.
+# Simple jQuery hydrating/datasyncing plugin
+This handy little plugin can do a lot a things on its own. It may be what you need if you just want to automatically save input data element-by-element without reloading the page, based only on the targeted element attributes. The parent form data-* can also be sent along with the other parameters.
 
 #Features
 - Sends data on Enter keypress and focusout
 - Quick data binding through html data-*
   -  If no dataAttributes option is set, all data-* associated with the input/textarea/select will be used
   -  Input value key will either be the name attribute or "value" by default
+- Also sends form data-* when "withFormData" option array is set 
 - Every form element is compatible
 - Method and URL in one declaration
 - Form object bound to success/error callbacks 
