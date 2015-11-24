@@ -1,12 +1,12 @@
 /*
 	Gaël DEBOST / IDMKR
-	jQuery Hydrate v.0.1
+	jQuery Hydrate v.0.2
 	Compatible with jQuery > 1.9.0
 */
 ;(function ($) {
 	//Feature detection https://github.com/malsup/form/blob/master/jquery.form.js#L68
-	var canUseFileAPI = ( $("<input type='file'/>").get(0).files !== undefined ) &&
-				  ( feature.formdata = window.FormData !== undefined );
+	var canUseFileAPI =  $("<input type='file'/>").get(0).files !== undefined  &&
+				  		 window.FormData !== undefined ;
 
 	$.fn.hydrate = function (options,callback) {
 		var filterData = function ($e,filter) {
@@ -27,10 +27,30 @@
 			cache: false,
 			dataFilter : false,
 			parent : "form",
-			parentDataFilter : false
+			parentDataFilter : false,
+			longPolling : false
 		},options);
 
-		$(this).bind({
+		var $inputs = $(this);
+
+		if(opts.longPolling) {
+			var time = Date.now();
+			(function poll(){
+				setTimeout(function () {
+				    $.ajax({ url: opts.longPolling, data : {timestamp : time} , success: function(data){
+				        var timestamp = data.timestamp;
+				        for(var i in data.fresh_data) {
+				        	var newData = data.fresh_data[i];
+				        	var id = newData[newData.replace];
+				        	if( time < newData.timestamp )
+				        		$inputs.filter("[data-"+newData.replace+"='"+id+"']").val(newData.value);
+				        }
+				    }, dataType: "json", complete: poll, timeout: 5000 });
+			    },1000);
+		    })();
+		}
+
+		$inputs.bind({
 			keyup : function (e) { e.keyCode === 13 && $(this).blur() },
 			change :function ()  { 
 				var $t = $(this), 
@@ -43,19 +63,19 @@
 				if(typeof opts == "object") {
 					$.each(opts, function (key,option) {
 
-						if( key.match( /^post|get$/ ) )
+						if( /^post|get$/.match( key ) )
 							$.extend(o,{ method : key, url : option });
 
-						else if( key.match( /dataFilter/i ) ) {
+						else if( /dataFilter/i.test( key ) ) {
 							var $el = key == "dataFilter" ? $t : $parent;
 							$.extend( o.data, option ? filterData($el,option) : $el.data() );
 						}
 
-						else if( key.match( /^success|error|beforeSend|complete$/ ) 
+						else if( /^success|error|beforeSend|complete$/.test( key ) 
 								 && typeof option == "function" )
 							o[key] = $.proxy(option,$t[0]);
 
-						else if( !key.match( /^parent|uploadProgress$/ ) )
+						else if( !/^parent|uploadProgress|longPolling$/.test( key ) )
 							o[key] = option;
 					});
 				} 
@@ -75,12 +95,13 @@
 					}
 
 					var formData = new FormData();
+					$.each(o.data, function (k,v) { formData.append(k,v); });
 
 					$.extend(o, {
 						method : "POST",
 						contentType: false,
             			processData: false,
-            			data : $.each(o.data, function (k,v) { formData.append(k,v); })
+            			data : formData
 					});
 
 					if ($.isFunction(opts.uploadProgress)) {
@@ -105,6 +126,6 @@
 
 				$.ajax(o);
 			}
-		})
+		});
 	}
 })(jQuery);
